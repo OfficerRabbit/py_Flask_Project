@@ -1,4 +1,20 @@
-<h3>Note Taking App</h3>
-<a href='/notes/view'>View all notes</a>
-<br>
-<a href='/notes/create'>Create a note</a>
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+		<title>Charles' Note Taking App</title>
+	</head>
+	<body>
+		<ul id="navbar">
+		  <li><a href="/">Home</a></li>
+		</ul>
+		<h3>Note Taking App</h3>
+		<p>Build a web app that can take information via input and insert/update a database.
+		Prototype a way to input initiative, Jupiter, or general data from a web form.</p>
+		<p>View all notes will take you to a page to view all notes in the SQLite database
+		<br>Create a note will take you to a page to input a note title and body</p>
+			<a href='/notes/view'>View all notes</a>
+			<br>
+			<a href='/notes/create'>Create a note</a>
+	</body>
+</html>

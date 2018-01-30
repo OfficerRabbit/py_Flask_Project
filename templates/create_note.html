@@ -1,9 +1,24 @@
-<form action='/notes/create' method="POST">
-    <label>Title</label>
-    <input type="text" name="title">
-
-    <label>Body</label>
-    <input type="text" name="body">
-
-    <input type="submit" value="Create">
-</form>
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+		<title>Charles' Note Taking App</title>
+	</head>
+	<body>
+		<ul id="navbar">
+		  <li><a href="/">Home</a></li>
+		</ul>
+		<p> Enter a note consisting of a Title and a Body.
+		<br>
+		<br>Go to <a href="/notes/view">View Notes</a> to view records.</p>
+		<form action='/notes/create' method="POST">
+			<label>Title</label>
+				<input type="text" name="title">
+					<br>
+					<br>
+			<label>Body</label>
+				<input type="text" name="body">
+				<input type="submit" value="Create">
+		</form>
+	</body>
+</html>

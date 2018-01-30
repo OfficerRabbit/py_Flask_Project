@@ -1,0 +1,10 @@
+body {
+  margin: 0 auto;
+  max-width: 50em;
+}
+
+#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
