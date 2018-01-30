@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>View Notes</title>
+    </head>
+    <body>
+        <h1>View Notes</h1>
+        {% for note in all_notes %}
+        <div><p><b>Title: {{ note.title }}</b><br>Body:{{ note.body }}</p></div>
+        {% endfor %}
+    </body>
+</html>
