@@ -4,12 +4,15 @@
 		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
 		<title>Charles' Note Taking App</title>
 	</head>
-	<body>
 		<ul id="navbar">
 		  <li><a href="/">Home</a></li>
 		</ul>
+	<header>
+	 <img src="{{url_for('static', filename='note_picture_david_klein.jpg')}}" height=500 width=700 />
+	</header>
+	<body>
+		<h3>Enter a Note</h3>
 		<p> Enter a note consisting of a Title and a Body.
-		<br>
 		<br>Go to <a href="/notes/view">View Notes</a> to view records.</p>
 		<form action='/notes/create' method="POST">
 			<label>Title</label>

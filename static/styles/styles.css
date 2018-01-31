@@ -1,6 +1,27 @@
+strong,
+h3 {
+  margin-top: 1em;
+  padding-top: 1em;
+  color: #333;
+}
+
+header {
+  background-color: #263d36;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  line-height: 1.2;
+  padding: 3vw 1em;
+  text-align: center;
+}
+
 body {
   margin: 0 auto;
   max-width: 50em;
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  padding: 4em 1em;
+  color: #555;
 }
 
 #navbar {

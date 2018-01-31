@@ -4,11 +4,16 @@
 		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
 		<title>Charles' Note Taking App</title>
 	</head>
-	<body>
 		<ul id="navbar">
 		  <li><a href="/">Home</a></li>
 		</ul>
-		<h1>View Notes</h1>
+	<header>
+	 <img src="{{url_for('static', filename='note_picture_david_klein.jpg')}}" height=500 width=700 />
+	</header>
+	<body>
+		<h3>View Notes</h3>
+		<p>This will be where you can view notes that have been made.<br>
+		Go to <a href="/notes/create">Create Note</a> to make a new record</p>
 			{% for note in all_notes %}
 		<div><p><b>Title: {{ note.title }}</b><br>Body:{{ note.body }}</p></div>
 			{% endfor %}
