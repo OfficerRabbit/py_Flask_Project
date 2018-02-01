@@ -22,23 +22,34 @@
             http://localhost:5000
 """
 from flask import Flask, render_template, redirect, request
+from wtforms import Form, StringField, SelectField
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-
+# Start the Flask app
 app = Flask(__name__)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
 db = SQLAlchemy(app)
 
-
+# Create the Note table model
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80))
     body = db.Column(db.Text)
 
 
+# Create the Note search class
+class NoteSearchForm(Form):
+    choices = [('Title', 'Title'),
+               ('Body', 'Body')]
+
+    select = SelectField('Search for Note Title:', choices = choices)
+    search = StringField('')
+
+
+# Set the home page route
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -61,7 +72,7 @@ def create_note():
         return redirect('/notes/create')
 
 
-# This is mah new shizzle!
+# View all the written notes
 @app.route('/notes/view', methods = ['GET'])
 def get_notes():
     notes = Note.query.all()
@@ -76,6 +87,20 @@ def get_notes():
         
     return render_template('view_note.html', title = 'View Notes', all_notes = all_notes)
 
+
+# This will allow you to view one post by choosing from a dropdown and searching
+@app.route('/notes/view_one', methods = ['GET', 'POST'])
+def view_one():
+    search = MusicSearchForm(request.form)
+    if request.method == 'POST':
+        return search_results(search)
+ 
+    return render_template('index.html', form=search)
+
+# This will 
+
+
+# This will allow you to search through the list of post titles and delete one
 
 if __name__ == "__main__":
     app.run(debug = True)
