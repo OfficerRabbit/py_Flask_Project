@@ -21,9 +21,9 @@
         Go to local host, port: 5000
             http://localhost:5000
 """
-from flask import Flask, render_template, redirect, request
-from wtforms import Form, StringField, SelectField
+from flask import Flask, render_template, redirect, request, flash
 from flask_sqlalchemy import SQLAlchemy
+from forms import NoteSearchForm
 import os
 
 # Start the Flask app
@@ -38,15 +38,6 @@ class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80))
     body = db.Column(db.Text)
-
-
-# Create the Note search class
-class NoteSearchForm(Form):
-    choices = [('Title', 'Title'),
-               ('Body', 'Body')]
-
-    select = SelectField('Search for Note Title:', choices = choices)
-    search = StringField('')
 
 
 # Set the home page route
@@ -89,19 +80,37 @@ def get_notes():
 
 
 # This will allow you to view one post by choosing from a dropdown and searching
-@app.route('/notes/view_one', methods = ['GET', 'POST'])
+@app.route('/notes/search_note', methods = ['GET', 'POST'])
 def view_one():
-    search = MusicSearchForm(request.form)
+    search = NoteSearchForm(request.form)
     if request.method == 'POST':
         return search_results(search)
  
-    return render_template('index.html', form=search)
+    return render_template('search_note.html', form=search)
 
-# This will 
+# This will show all the results from the previous search query
+@app.route('/notes/results')
+def search_results(search):
+    results = []
+    search_string = search.data['search']
+ 
+    if search.data['search'] == '':
+        #qry = db_session.query(Note)
+        #results = qry.all()
+        results = Note.query.all()
+ 
+    if not results:
+        flash('No results found!')
+        return redirect('/notes/search_note')
+    else:
+        # display results
+        return render_template('results.html', table = table)
 
 
 # This will allow you to search through the list of post titles and delete one
 
 if __name__ == "__main__":
+    app.secret_key = "secret"
+    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug = True)
 
